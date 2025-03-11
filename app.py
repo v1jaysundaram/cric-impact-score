@@ -3,7 +3,7 @@ import pandas as pd
 import pickle
 
 # Load the impact score pickle file
-with open("impactscore_model.pkl", "rb") as file:
+with open("impactscore_model_v1.pkl", "rb") as file:
     player_impact = pickle.load(file)
 
 # Streamlit UI Elements
