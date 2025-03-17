@@ -30,9 +30,7 @@ impact_column_map = {
 selected_column = impact_column_map[impact_type]
 
 # Check if a valid match ID is entered
-if match_id.strip():
-    try:
-        match_id = int(match_id)
+if match_id:
         # Filter the player impact table for the selected match
         df_filtered = player_impact[player_impact["p_match"] == match_id][["player", selected_column]].reset_index(drop=True)
 
@@ -42,8 +40,6 @@ if match_id.strip():
             st.dataframe(df_filtered)
         else:
             st.warning("No data found for the entered Match ID.")
-    except ValueError:
-        st.error("Please enter a valid numeric Match ID.")
 
 st.sidebar.write("Built by [Vijay](https://www.linkedin.com/in/vijay-sundaram/)", unsafe_allow_html=True)
 
