@@ -34,9 +34,6 @@ if match_id:
     # Filter the player impact table for the selected match
     df_filtered = player_impact[player_impact["p_match"] == match_id][["player", selected_column]].reset_index(drop=True)
 
-    # Rename the impact column dynamically
-    df_filtered = df_filtered.rename(columns={selected_column: "Impact Score"})
-
     # Display results
     if not df_filtered.empty:
         st.write(f"{impact_type} for Match {match_id}")
