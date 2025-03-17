@@ -15,11 +15,6 @@ match_id = st.number_input("Enter Match ID", min_value=0, step=1)
 # Info about Match ID
 st.info("Open the specific match on ESPNcricinfo and copy the long number at the end of the URL.")
 
-# Selection for impact type
-impact_type = st.radio(
-    "Select Impact Type",
-    ("Batting Impact", "Bowling Impact", "Total Impact"),
-)
 
 # Check if a valid match ID is entered
 if match_id:
