@@ -10,7 +10,7 @@ with open("impactscore_model_v1.pkl", "rb") as file:
 st.title("IPL Impact Score Calculator")
 
 # User input for match ID
-match_id = st.number_input("Enter Cricinfo Match ID")
+match_id = st.text_input("Match ID", placeholder="Enter Match ID")
 
 # Info about Match ID
 st.info("Open the specific match on ESPNcricinfo and copy the long number at the end of the URL.")
