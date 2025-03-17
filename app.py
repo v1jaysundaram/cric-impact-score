@@ -21,25 +21,17 @@ impact_type = st.radio(
     ("Batting Impact", "Bowling Impact", "Total Impact"),
 )
 
-# Map selection to column names
-impact_column_map = {
-    "Batting Impact": "impact_bat",
-    "Bowling Impact": "impact_ball",
-    "Total Impact": "total_impact",
-}
-selected_column = impact_column_map[impact_type]
-
 # Check if a valid match ID is entered
 if match_id:
-        # Filter the player impact table for the selected match
-        df_filtered = player_impact[player_impact["p_match"] == match_id][["player", selected_column]].reset_index(drop=True)
+    # Filter the player impact table for the selected match
+    df_filtered = player_impact[player_impact["p_match"] == match_id][['player', 'impact_bat', 'impact_ball', 'total_impact']].reset_index(drop=True)
 
-        # Display results
-        if not df_filtered.empty:
-            st.write(f"{impact_type} for Match {match_id}")
-            st.dataframe(df_filtered)
-        else:
-            st.warning("No data found for the entered Match ID.")
+    # Display results
+    if not df_filtered.empty:
+        st.write(f"Impact Scores for Match {match_id}")
+        st.dataframe(df_filtered)
+    else:
+        st.warning("No data found for the entered Match ID.")
 
 st.sidebar.write("Built by [Vijay](https://www.linkedin.com/in/vijay-sundaram/)", unsafe_allow_html=True)
 
