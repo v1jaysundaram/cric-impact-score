@@ -3,7 +3,7 @@ import pandas as pd
 import pickle
 
 # Load the impact score pickle file
-with open("impactscore_model_v1.pkl", "rb") as file:
+with open("is_model_v2.pkl", "rb") as file:
     player_impact = pickle.load(file)
 
 # Streamlit UI Elements
@@ -19,7 +19,7 @@ st.info("Open the specific match on ESPNcricinfo and copy the long number at the
 # Check if a valid match ID is entered
 if match_id:
     # Filter the player impact table for the selected match
-    df_filtered = player_impact[player_impact["p_match"] == match_id][['player', 'impact_bat', 'impact_ball', 'total_impact']].reset_index(drop=True)
+    df_filtered = player_impact[player_impact["p_match"] == match_id].reset_index(drop=True)
 
     # Display results
     if not df_filtered.empty:
