@@ -8,13 +8,13 @@ import matplotlib.pyplot as plt
 st.set_page_config(page_title="IPL Impact Score", layout="centered")
 
 # Load the three pickle files
-with open("is_player_output.pkl", "rb") as file:
+with open("is_player_model_v1.2.pkl", "rb") as file:
     player_impact = pickle.load(file)
 
-with open("is_overwise_output.pkl", "rb") as file:
+with open("is_overwise_model_v1.2.pkl", "rb") as file:
     impact_overwise = pickle.load(file)
 
-with open("is_phasewise_output.pkl", "rb") as file:
+with open("is_phasewise_model_v1.2.pkl", "rb") as file:
     impact_phasewise = pickle.load(file)
 
 # Load the impact score pickle file
