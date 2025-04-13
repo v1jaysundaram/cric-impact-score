@@ -17,10 +17,6 @@ with open("is_overwise_model_v1.2.pkl", "rb") as file:
 with open("is_phasewise_model_v1.2.pkl", "rb") as file:
     impact_phasewise = pickle.load(file)
 
-# Load the impact score pickle file
-with open("is_model_v1.1.pkl", "rb") as file:
-    player_impact = pickle.load(file)
-
 # Streamlit UI Elements
 st.title("IPL Impact Score")
 
