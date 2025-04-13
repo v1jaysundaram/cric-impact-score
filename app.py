@@ -8,7 +8,7 @@ import matplotlib.pyplot as plt
 st.set_page_config(page_title="IPL Impact Score Viewer", layout="centered")
 
 # Load the three pickle files
-with open("is_player_output.1.pkl", "rb") as file:
+with open("is_player_output.pkl", "rb") as file:
     player_impact = pickle.load(file)
 
 with open("is_overwise_output.pkl", "rb") as file:
