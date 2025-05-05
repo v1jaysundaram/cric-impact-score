@@ -46,21 +46,48 @@ if match_id:
             st.warning("No data found for the entered Match ID.")
 
     elif impact_type == "Over-wise":
-        df_filtered = impact_overwise[impact_overwise["p_match"] == match_id]
+    df_filtered = impact_overwise[impact_overwise["p_match"] == match_id]
 
-        if not df_filtered.empty:
-            st.subheader("Over-wise Impact Score")
-            fig, ax = plt.subplots(figsize=(14, 6))
-            sns.barplot(data=df_filtered, x='over', y='impact_bat', hue='team_bat', ax=ax)
+    if not df_filtered.empty:
+        st.subheader("Over-wise Impact Score")
 
-            ax.set_title('Over-wise Impact Score')
-            ax.set_xlabel('Over')
-            ax.set_ylabel('Impact Score')
-            ax.set_xticks(range(0, 20))
-            ax.set_xticklabels([str(i+1) for i in range(20)])
-            ax.legend(title='Team')
-            ax.grid(axis='y', linestyle='--', alpha=0.6)
-            st.pyplot(fig)
+        # Ensure 'over' column is integer
+        df_filtered['over'] = df_filtered['over'].astype(int)
+
+        # Create the figure
+        fig, ax = plt.subplots(figsize=(14, 6))
+
+        # Bar plot for the over-by-over impact score
+        sns.barplot(data=df_filtered, x='over', y='impact_bat', hue='team_bat', alpha=0.9, ax=ax)
+
+        # Line plot for cumulative impact (shifted x-axis by -1)
+        for team in df_filtered['team_bat'].unique():
+            team_data = df_filtered[df_filtered['team_bat'] == team]
+            sns.lineplot(
+                x=team_data['over'] - 1,
+                y=team_data['cumulative_impact_bat'],
+                label=f"{team} - Cumulative",
+                linestyle='--',
+                marker='o',
+                alpha=0.6,
+                ax=ax
+            )
+
+        # Title and labels
+        ax.set_title('Over-by-Over Batting Impact Score by Team with Cumulative Impact')
+        ax.set_xlabel('Over')
+        ax.set_ylabel('Impact Score')
+        ax.set_xticks(range(0, 20))
+        ax.set_xticklabels([str(i+1) for i in range(20)])
+
+        # Clean legend and layout
+        ax.legend(title='Team', bbox_to_anchor=(1.05, 1), loc='upper left')
+        ax.grid(axis='y', linestyle='--', alpha=0.6)
+        fig.tight_layout()
+
+        # Display the plot
+        st.pyplot(fig)
+        
         else:
             st.warning("No data found for the entered Match ID.")
 
